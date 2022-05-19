@@ -1,17 +1,16 @@
 <template>
 
     <form-wizard ref="formwizard" @onComplete="onComplete" @onNextStep="nextStep" @onPreviousStep="previousStep"
-        @onReset="reset">
-        <tab-content title="مقدم الطلب" :selected="true">
+        @onReset="reset" >
+        <tab-content title="مقدم الطلب" :selected="true" >
             <div class="form-group">
                 <label class="form-label mt-2" for="RequesterName">اسم مقدم الطلب:</label>
                 <input type="text" class="form-control mt-1 mb-4" :class="hasError('RequesterName') ? 'is-invalid' : ''"
-                    placeholder="الاسم ؟" v-model="formData.RequesterName">
+                   placeholder="" v-model="formData.RequesterName">
                 <div v-if="hasError('RequesterName')" class="invalid-feedback">
                     <div class="error" v-if="!$v.formData.RequesterName.required">اسم مقدم الطلب مطلوب</div>
                 </div>
             </div>
-
         </tab-content>
         <tab-content title="عن المنظمة">
             <h1 class="text-white mb-5">نسعد بخدمتك {{ formData.RequesterName }} !</h1>
@@ -34,7 +33,6 @@
                 </div>
             </div>
         </tab-content>
-
         <tab-content title="عن المفوض">
             <div class="form-group">
                 <label class="form-label mt-3" for="authName">اسم المفوض لدى {{ formData.companyName }}:</label>
@@ -145,7 +143,7 @@ export default {
         },
 
         nextStep() {
-            //alert("On Next Step");
+            // alert("On Next Step");
         },
 
         previousStep() {
