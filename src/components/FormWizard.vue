@@ -3,6 +3,11 @@
     <div class="step-header">
       <div class="step-progress">
         <div class="bar progressbar" :style="{ width: progress + '%' }">
+          <div class="text-white text-end h-100 d-grid align-content-center me-3">
+            <div class="percnteg-text">
+              {{ ((currentTab + 1) / totalTabs) * 100 + ' %' }}
+            </div>
+          </div>
         </div>
       </div>
       <!-- <ul class="step-pills">
@@ -14,16 +19,15 @@
             </li>
         </ul> -->
     </div>
-    <div class="step-body mt-5">
-      <form>
+    <div class="step-body row mt-5 justify-content-center">
+      <div class="col-md-9">
         <slot></slot>
-      </form>
+      </div>
     </div>
     <div class="step-footer mt-1">
       <div class="btn-group" role="group">
         <template v-if="!submitSuccess">
-          <button @click="previousTab" v-show="currentTab > 0"
-            class="step-button step-button-previous">عودة</button>
+          <button @click="previousTab" v-show="currentTab > 0" class="step-button step-button-previous">عودة</button>
           <button @click="nextTab" v-if="currentTab < totalTabs - 1"
             class="step-button step-button-next">التالي</button>
           <button @click="onSubmit" v-if="currentTab === totalTabs - 1"
@@ -90,7 +94,6 @@ export default {
       this._switchTab(this.currentTab + 1);
 
       this.$emit('onNextStep');
-
     },
 
     reset() {
@@ -175,9 +178,11 @@ export default {
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap');
-*{
+
+* {
   font-family: 'El Messiri', sans-serif;
 }
+
 main {
   background-image: linear-gradient(rgb(58 4 77), rgb(226 0 132/58%)), url(../assets/images/img-b01.jpg);
   background-size: cover;
@@ -189,32 +194,32 @@ label {
 }
 
 .form-control,
-.form-label{
-font-size: 1.5rem !important;
-text-align: right;
-color:white !important;
+.form-label {
+  font-size: 1.5rem !important;
+  text-align: right;
+  color: white !important;
 
 }
 
-.form-control::placeholder{
-color: rgb(173, 173, 173) !important;
+.form-control::placeholder {
+  color: rgb(173, 173, 173) !important;
 }
 
-.form-control{
-background-color: rgb(36 36 36 / 33%) !important;
-border-radius: 40px !important;
-border:0px !important;
+.form-control {
+  background-color: rgb(36 36 36 / 33%) !important;
+  border-radius: 40px !important;
+  border: 0px !important;
 
 }
 
 .form-control:focus {
-    color: #212529;
-    background-color: #fff;
-    border:0px !important;
-    border-color: #86b7fe;
-    outline: 0;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
+  color: #212529;
+  background-color: #fff;
+  border: 0px !important;
+  border-color: #86b7fe;
+  outline: 0;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .progressbar {
@@ -303,11 +308,11 @@ border:0px !important;
   color: #fff;
   outline: none !important;
   background-color: rgb(36 36 36 / 33%) !important;
-  transition:all .5s ease-in-out;
- 
+  transition: all .5s ease-in-out;
+
 }
 
-.step-button:hover{
+.step-button:hover {
   background-color: rgba(0, 0, 0, 0.40) !important;
 }
 
@@ -323,5 +328,4 @@ border:0px !important;
   background: rgba(0, 0, 0, 0.38);
   border-radius: 50%;
 }
-
 </style>
