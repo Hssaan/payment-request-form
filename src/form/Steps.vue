@@ -13,7 +13,7 @@
             </div>
 
         </tab-content>
-        <tab-content title="عن المنظمة">
+        <tab-content  title="عن المنظمة">
             <h1 class="text-white mb-5">نسعد بخدمتك {{ formData.RequesterName }} !</h1>
             <div class="form-group">
                 <label class="form-label mt-3" for="companyName">فضلًا تزويدنا باسم المنظمة:</label>
@@ -35,7 +35,7 @@
             </div>
         </tab-content>
 
-        <tab-content title="عن المفوض">
+        <tab-content  title="عن المفوض">
             <div class="form-group">
                 <label class="form-label mt-3" for="authName">اسم المفوض لدى {{ formData.companyName }}:</label>
                 <input type="text" class="form-control mt-1 mb-4" :class="hasError('authName') ? 'is-invalid' : ''"
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </tab-content>
-        <tab-content title="البيانات البنكية">
+        <tab-content  title="البيانات البنكية">
             <div class="form-group">
                 <label class="form-label mt-3" for="referral">اسم البنك</label>
                 <select :class="hasError('referral') ? 'is-invalid' : ''" class="form-control mt-2 mb-4"

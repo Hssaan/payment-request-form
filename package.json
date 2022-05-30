@@ -18,7 +18,11 @@
 
     "dependencies": {
 
+        "bootstrap": "^5.1.0",
+
         "core-js": "^2.6.5",
+
+        "jquery": "^3.6.0",
 
         "rtl-converter": "^0.1.0",
 
@@ -95,3 +99,4 @@
     ]
 
 }
+
