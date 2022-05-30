@@ -3,19 +3,18 @@
     <form-wizard ref="formwizard" @onComplete="onComplete" @onNextStep="nextStep" @onPreviousStep="previousStep"
         @onReset="reset">
         <tab-content title="مقدم الطلب" :selected="true">
-            <div class="form-group">
+            <form @submit.prevent="onEnter" class="form-group">
                 <label class="form-label mt-2" for="RequesterName">اسم مقدم الطلب:</label>
                 <input type="text" class="form-control mt-1 mb-4" :class="hasError('RequesterName') ? 'is-invalid' : ''"
-                    placeholder="الاسم ؟" v-model="formData.RequesterName">
+                    placeholder="" v-model="formData.RequesterName">
                 <div v-if="hasError('RequesterName')" class="invalid-feedback">
                     <div class="error" v-if="!$v.formData.RequesterName.required">اسم مقدم الطلب مطلوب</div>
                 </div>
-            </div>
-
+            </form>
         </tab-content>
         <tab-content  title="عن المنظمة">
             <h1 class="text-white mb-5">نسعد بخدمتك {{ formData.RequesterName }} !</h1>
-            <div class="form-group">
+            <form @submit.prevent="onEnter" class="form-group">
                 <label class="form-label mt-3" for="companyName">فضلًا تزويدنا باسم المنظمة:</label>
                 <input type="text" class="form-control mt-1 mb-4" :class="hasError('companyName') ? 'is-invalid' : ''"
                     placeholder="" v-model="formData.companyName">
@@ -23,7 +22,7 @@
                     <div class="error" v-if="!$v.formData.companyName.required">.
                     </div>
                 </div>
-            </div>
+            </form>
             <div class="form-group">
                 <label class="form-label mt-3" for="companyID">رقم تسجيل المنظمة أو السجل التجاري:</label>
                 <input type="text" class="form-control mt-1 mb-4" :class="hasError('companyID') ? 'is-invalid' : ''"
@@ -43,7 +42,7 @@
                 <div v-if="hasError('authName')" class="invalid-feedback">
                     <div class="error" v-if="!$v.formData.authName.required">اسم المفوض مطلوب</div>
                 </div>
-            </div>
+            </form>
             <div class="form-group">
                 <label class="form-label mt-3" for="authMobile">رقم الجوال:</label>
                 <input type="text" class="form-control mt-1 mb-4" :class="hasError('authMobile') ? 'is-invalid' : ''"
@@ -53,7 +52,7 @@
                     <div class="error" v-if="!$v.formData.authMobile.numeric">المدخل يجب ان يكون رقم</div>
                 </div>
             </div>
-            <div class="form-group">
+            <form @submit.prevent="onEnter" class="form-group">
                 <label class="form-label mt-3" for="authEmail">البريد الإلكتروني</label>
                 <input type="email" class="form-control mt-1 mb-4" :class="hasError('authEmail') ? 'is-invalid' : ''"
                     placeholder="" v-model="formData.authEmail">
@@ -61,7 +60,7 @@
                     <div class="error" v-if="!$v.formData.authEmail.required">البريد الإلكتروني مطلوب</div>
                     <div class="error" v-if="!$v.formData.authEmail.email">البريد الإلكتروني غير صحيح</div>
                 </div>
-            </div>
+            </form>
         </tab-content>
         <tab-content  title="البيانات البنكية">
             <div class="form-group">
@@ -85,14 +84,14 @@
                     <div class="error" v-if="!$v.formData.referral.required">Please select on of the fields.</div>
                 </div>
             </div>
-            <div class="form-group form-check">
+            <form @submit.prevent="onEnter" class="form-group form-check">
                 <input type="checkbox" :class="hasError('terms') ? 'is-invalid' : ''" class="form-check-input mt-2 mb-4"
                     v-model="formData.terms">
                 <label class="form-check-label mt-3">I accpet terms & conditions</label>
                 <div v-if="hasError('terms')" class="invalid-feedback">
                     <div class="error" v-if="!$v.formData.terms.required">Please select terms and conditions.</div>
                 </div>
-            </div>
+            </form>
         </tab-content>
     </form-wizard>
 </template>
@@ -145,11 +144,14 @@ export default {
         },
 
         nextStep() {
-            //alert("On Next Step");
+            // alert("On Next Step");
         },
 
         previousStep() {
             //alert("On Previous Step");
+        },
+        onEnter() {
+            this.$refs.formwizard.nextTab();
         }
     }
 }
